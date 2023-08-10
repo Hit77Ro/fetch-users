@@ -1,0 +1,270 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+ul,
+ol {
+  list-style: none;
+}
+
+a,
+a:is(:focus, :hover) {
+  text-decoration: none;
+}
+
+a img, span,
+video {
+  display: block;
+}
+
+video,
+img {
+  width: 100%;
+  max-width: 100%;
+}
+
+:focus {
+  outline: none;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  text-transform: capitalize;
+  font-size: inherit;
+  font-weight: 700;
+}
+
+button,
+input,
+select,
+textarea {
+  margin: 0;
+  padding: 0;
+  border: none;
+  background: none;
+  font: inherit;
+  color: inherit;
+  line-height: normal;
+  display: block;
+}
+
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+main,
+nav,
+section,
+summary {
+  display: block;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 10px;
+}
+
+body {
+  font-family: "Cairo", sans-serif;
+  font-size: 1.6rem;
+  overflow-y: overlay;
+  line-height: 1.6;
+  min-height: 100vh;
+}
+
+.container {
+  height: 100%;
+  max-width: 100%;
+  margin-inline: auto;
+  padding-inline: 1.6rem;
+}
+
+.f-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.f-between {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.f-column-center {
+  display: flex;
+  align-items: center;
+}
+
+.f-column-between {
+  display: flex;
+  justify-content: space-between;
+}
+
+.nav-links-center-flex .nav-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Scroll customisation */
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+::-webkit-scrollbar-track {
+  background-color: var(--scollbar-track-bg);
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: var(--scrollbar-thumb-bg-clr);
+  border-radius: var(--scrollbar-thumb-radius);
+}
+
+/* Scroll To Top  Button  */
+.btn {
+  transition: all 0.15s ease-in;
+  background-color: transparent;
+  border: 1px solid transparent;
+  text-transform: capitalize;
+  display: block;
+  padding: 5px;
+  border-radius: 0.2rem;
+  text-align: center;
+  white-space: nowrap;
+  position: relative;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.main-btn {
+  padding: 5px 10px;
+  background-color: #2196f3;
+  color: white;
+  border-radius: 5px;
+  font-size: 1.3rem;
+}
+.main-btn:hover {
+  background-color: #0c7cd5;
+}
+
+:root {
+  --_size: 1.8rem;
+  --_radius: 0.2em;
+  /* Light Mode */
+  --bg--light: white;
+  --txt--light: ;
+  --accent--light: orange;
+  --accent1--light: ;
+  --muted--light: ;
+  /* Dark Mode */
+  --bg--dark: black;
+  --txt--dark: ;
+  --accent--dark: ;
+  --accent1--dark: ;
+  --muted--dark: ;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: var(--bg--dark);
+    --txt: var(--txt--dark);
+    --accent: var(--accent--dark);
+    --accent1: var(--accent1--dark);
+    --muted: var(--muted--dark);
+    color-scheme: dark;
+  }
+}
+@media (prefers-color-scheme: light) {
+  :root {
+    --bg: var(--bg--light);
+    --txt: var(--txt--light);
+    --accent: var(--accent--light);
+    --accent1: var(--accent1--light);
+    --muted: var(--muted--light);
+    color-scheme: light;
+  }
+}
+[color-scheme=dark] {
+  --bg: var(--bg--dark);
+  --txt: var(--txt--dark);
+  --accent: var(--accent--dark);
+  --accent1: var(--accent1--dark);
+  --muted: var(--muted--dark);
+  color-scheme: dark;
+}
+
+[color-scheme=light] {
+  --bg: var(--bg--light);
+  --txt: var(--txt--light);
+  --accent: var(--accent--light);
+  --accent1: var(--accent1--light);
+  --muted: var(--muted--light);
+  color-scheme: light;
+}
+
+.container {
+  font-family: "Cairo";
+  min-height: 100vh;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 20px;
+}
+.container > * {
+  padding: 10px;
+  border-radius: 10px;
+  box-shadow: 1px 1px 5px 2px rgba(0, 0, 0, 0.3);
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+.container > * > * {
+  padding: inherit;
+  border-radius: inherit;
+  box-shadow: inherit;
+}
+.container .content {
+  align-items: flex-start;
+  flex-grow: 2;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 20px;
+  transition: 0.2s linear;
+}
+.container .content.animate {
+  opacity: 0;
+}
+.container .user {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  cursor: pointer;
+}
+.container .user:hover {
+  background-color: #eee;
+}
+.container .user.active {
+  background-color: rgba(241, 128, 87, 0.623);
+}
+.container .post {
+  padding: 20px;
+}
+.container .post-title {
+  color: orangered;
+  font-size: 20px;
+}
