@@ -1,22 +1,27 @@
 let aside = document.querySelector(".aside");
 let content = document.querySelector(".content");
 
-const fetcher = async (url, errorMessage) => {
-  const res = await fetch(url);
-  if (!res.ok)
-    throw new Error(`${errorMessage} ,status code is : ${res.status}`);
-  return await res.json();
-};
+async function fetcher(url, options = {}) {
+  const response = await fetch(url, options);
 
+  if (!response.ok) {
+    throw new Error(
+      `Error fetching data from ${url} :  ${errorMessage} - ${response.status} ${response.statusText}`
+    );
+  }
+
+  const data = await response.json();
+  return data;
+}
 const renderPosts = (data) => {
   data.length = 5;
   content.innerHTML = data
     .map(
       ({ title, body }) => `
-        <div class="post">
+      <div class="post">
           <div class="post-title">${title}</div>
           <div class="post-body">
-           ${body}
+          ${body}
           </div>
         </div>`
     )
@@ -40,10 +45,17 @@ const renderUsers = (data) => {
 const fetchPosts = async (id) => {
   try {
     const data = await fetcher(
-      `https://jsonplaceholder.typicode.com/posts?userId=${id}`,
-      "error getting user id from the server"
+      `https://jsonplaceholder.typicode.com/posts?userId=${id}`
     );
     renderPosts(data);
+  } catch (error) {
+    console.log(error);
+  }
+};
+const fetchingUsers = async () => {
+  try {
+    const data = await fetcher("https://jsonplaceholder.typicode.com/users");
+    renderUsers(data);
   } catch (error) {
     console.log(error);
   }
@@ -67,15 +79,6 @@ aside.addEventListener("click", function (e) {
     setTimeout(() => content.classList.remove("animate"), 500);
   }
 });
-
-const fetchingUsers = async () => {
-  try {
-    const data = await fetcher("https://jsonplaceholder.typicode.com/users");
-    renderUsers(data);
-  } catch (error) {
-    console.log("error fetching users", error.message);
-  }
-};
 
 fetchPosts(1);
 fetchingUsers();
